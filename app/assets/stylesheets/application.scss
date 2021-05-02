@@ -35,17 +35,11 @@
 div {
   &.field, &.actions {
     margin-bottom: 10px;
-  }
-
-.like-btn {
-  color: blue;
 }
 
-.like-btn-unlike {
-  color: red;
-}
+/*赤いハート*/
+.heart_red{color:#e54747;}
+/*青いハート*/
+.heart_blue{color:#528fff;}
 
-.comment-link{
-  color: black;
-}
 }
