@@ -1,6 +1,6 @@
 # DMM WEBCAMPコンテンツ【応用課題フェーズ】
-DMM WEBCAMPの学習コンテンツ課題2【Bookers2を完成させよう(デバッグ形式)】です。
-
+5/1 DMM WEBCAMPの学習コンテンツ課題2【Bookers2を完成させよう(デバッグ形式)】です。
+5/2 DMM WEBCAMPの学習コンテンツ課題3【Bookers2へ「いいね/コメント機能」を実装】です。
 
 This README would normally document whatever steps are necessary to get the
 application up and running.
