@@ -1,9 +1,7 @@
-<% if @users %>
-  <h2>Users search for "<%= params[:content] %>"</h2>
-  <%= render 'users/search', users: @users %>
-<% end %>
-
-<% if @books %>
-  <h2>Books search for "<%= params[:content] %>"</h2>
-  <%= render 'books/search', books: @books %>
+<% if @model == 'user' %>
+  <h3>Users search for "<%= @content %>"</h3>
+  <%= render 'users/index', users: @records %>
+<% elsif @model == 'book' %>
+  <h3>Books search for "<%= @content %>"</h3>
+  <%= render 'books/index', books: @records %>
 <% end %>
