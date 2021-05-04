@@ -16,16 +16,18 @@ class User < ApplicationRecord
   # 与フォロー関係を通じて参照→自分がフォローしている人
   has_many :followings, through: :relationships, source: :followed
 
-  def follow(user_id)
-    relationships.create(followed_id: user_id)
+  def follow(other_user)
+    unless self == other_user
+      relationships.create(followed_id: other_user.id)
+    end
   end
 
-  def unfollow(user_id)
-    relationships.find_by(followed_id: user_id).destroy
+  def unfollow(other_user)
+    relationships.find_by(followed_id: other_user.id).destroy
   end
 
-  def following?(user)
-    followings.include?(user)
+  def following?(other_user)
+    followings.include?(other_user)
   end
 
   attachment :profile_image
