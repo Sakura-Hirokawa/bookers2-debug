@@ -1,51 +1,46 @@
 class SearchesController < ApplicationController
   def search
-    @range = params[:range]
-    search = params[:search]
-    word = params[:word]
-    
-    if @range == '1'
-      @user = User.search(search, word)
-    else
-      @book = Book.search(search, word)
-    end
+    @model = params["model"]
+    @content = params["content"]
+    @method = params["method"]
+    @records = search_for(@model, @content, @method)
   end
-  
+
   private
-  
-  def search_for(search, word)
-     #完全一致
-    if search == "perfect_match"
-      @user = User.where("#{word}")
+
+  def search_for(model, content, method)
+    if model == 'user'
+      # 完全一致
+      if method == "perfect_match"
+        @user = User.where(name: content)
       #前方一致
-    elsif search == "foward_match"
-      @user = User.where("name LIKE?", "#{word}%")
+      elsif method == "foward_match"
+        @user = User.where("name LIKE?", content+'%')
       #後方一致
-    elsif search == "backward_match" 
-      @user = User.where("name LIKE?", "%#{word}")
+      elsif method == "backward_match"
+        @user = User.where("name LIKE?", '%'+content)
       #部分一致
-    elsif search == "partial_match" 
-      @user = User.where("name LIKE?", "%#{word}%")
-    else
-      @user = User.all
-    end
-  end
-  
-  def search_for
-    #完全一致
-    if search == "perfect_match"
-      @book = Book.where("#{word}")
+      elsif method == "partial_match"
+        @user = User.where("name LIKE?", '%'+content+'%')
+      else
+        @user = User.all
+      end
+    elsif model == 'book'
+      #完全一致
+      if method == "perfect_match"
+        @book = Book.where(title: content)
       #前方一致
-    elsif search == "foward_match"
-      @book = Book.where("title LIKE?", "#{word}%"
+      elsif method == "foward_match"
+        @book = Book.where("title LIKE?", content+'%')
       #後方一致
-    elsif search == "backward_match"
-      @book = Book.where("title LIKE?", "%#{word}")
+      elsif method == "backward_match"
+        @book = Book.where("title LIKE?", '%'+content)
       #部分一致
-    elsif search == "partial_match"
-      @book = Book.where("title LIKE?", "%#{word}%")
-    else
-      @book = Book.all
+      elsif method == "partial_match"
+        @book = Book.where("title LIKE?", '%'+content+'%')
+      else
+        @book = Book.all
+      end
     end
   end
 end
