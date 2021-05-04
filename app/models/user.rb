@@ -29,7 +29,7 @@ class User < ApplicationRecord
   def following?(other_user)
     followings.include?(other_user)
   end
-
+ 
   attachment :profile_image
 
   validates :name, length: {minimum: 2, maximum: 20}, uniqueness: true

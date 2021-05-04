@@ -1,46 +1,37 @@
 class SearchesController < ApplicationController
   def search
-    @model = params["model"]
-    @content = params["content"]
-    @method = params["method"]
-    @records = search_for(@model, @content, @method)
-  end
+    # 完全一致
+    if params[:content].present? && params[:model] === "User" && params[:method] === "perfect"
+			@users = User.where('name LIKE ?', "#{params[:content]}")
 
-  private
+		# 前方一致
+		elsif params[:content].present? && params[:model] === "User" && params[:method] === "forward"
+			@users = User.where('name LIKE ?', "#{params[:content]}%")
 
-  def search_for(model, content, method)
-    if model == 'user'
-      # 完全一致
-      if method == "perfect_match"
-        @user = User.where(name: content)
-      #前方一致
-      elsif method == "foward_match"
-        @user = User.where("name LIKE?", content+'%')
-      #後方一致
-      elsif method == "backward_match"
-        @user = User.where("name LIKE?", '%'+content)
-      #部分一致
-      elsif method == "partial_match"
-        @user = User.where("name LIKE?", '%'+content+'%')
-      else
-        @user = User.all
-      end
-    elsif model == 'book'
-      #完全一致
-      if method == "perfect_match"
-        @book = Book.where(title: content)
-      #前方一致
-      elsif method == "foward_match"
-        @book = Book.where("title LIKE?", content+'%')
-      #後方一致
-      elsif method == "backward_match"
-        @book = Book.where("title LIKE?", '%'+content)
-      #部分一致
-      elsif method == "partial_match"
-        @book = Book.where("title LIKE?", '%'+content+'%')
-      else
-        @book = Book.all
-      end
+		# 後方一致
+		elsif params[:content].present? && params[:model] === "User" && params[:method] === "backward"
+			@users = User.where('name LIKE ?', "%#{params[:content]}")
+
+		# 部分一致
+		elsif params[:content].present? && params[:model] === "User" && params[:method] === "partial"
+			@users = User.where('name LIKE ?', "%#{params[:content]}%")
     end
+
+    # 完全一致
+    if params[:content].present? && params[:model] === "Book" && params[:method] === "perfect"
+      @books = Book.where('title LIKE ?', "#{params[:content]}")
+
+    # 前方一致
+		elsif params[:content].present? && params[:model] === "Book" && params[:method] === "forward"
+		  @books = Book.where('title LIKE ?', "#{params[:content]}%")
+
+	  # 後方一致
+	  elsif params[:content].present? && params[:model] === "Book" && params[:method] === "backward"
+	    @books = Book.where('title LIKE ?', "%#{params[:content]}")
+
+	   # 部分一致
+		elsif params[:content].present? && params[:model] === "Book" && params[:method] === "partial"
+		  @books = Book.where('title LIKE ?', "%#{params[:content]}%")
+		end
   end
 end
