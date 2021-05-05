@@ -3,7 +3,7 @@
 ## 5/2 DMM WEBCAMPの学習コンテンツ課題3【Bookers2へ「いいね/コメント機能」を実装】です。
 ## 5/3 DMM WEBCAMPの学習コンテンツ課題4【Bookers2へ「フォロー/フォロワー機能」を実装】です。
 ## 5/4 DMM WEBCAMPの学習コンテンツ課題5【Bookers2へ「検索機能」を実装】です。
-## 5/5 DMM WEBCAMPの学習コンテンツ課題6【】です。
+## 5/5 DMM WEBCAMPの学習コンテンツ課題6【課題3で実装した機能の非同期通信化】です。
 
 This README would normally document whatever steps are necessary to get the
 application up and running.
