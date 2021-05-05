@@ -7,11 +7,13 @@ class BooksController < ApplicationController
     @book_new = Book.new
     @user = @book.user
     @book_comment = BookComment.new
+    @favorite = Favorite.new
   end
 
   def index
     @book = Book.new
     @books = Book.all
+    @favorite = Favorite.new
   end
 
   def create
