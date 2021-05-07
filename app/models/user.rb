@@ -17,6 +17,8 @@ class User < ApplicationRecord
   has_many :followers, through: :reverse_of_relationships, source: :follower
   has_many :followings, through: :relationships, source: :followed
   
+  include JpPrefecture
+  jp_prefecture :prefecture_code
   
   def prefecture_name
     JpPrefecture::Prefecture.find(code: prefecture_code).try(:name)
