@@ -3,7 +3,7 @@
     <div class='col-md-3'>
       <h2>User info</h2>
       <%= render 'users/info', user: @user %>
-      
+
       <!--チャット-->
       <% unless @user.id == current_user.id %>
         <% if @isRoom == true %>
