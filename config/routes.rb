@@ -4,7 +4,7 @@ Rails.application.routes.draw do
     sessions: 'users/sessions',
     registrations: 'users/registrations',
   }
-  
+
   root 'homes#top'
   get 'home/about' => 'homes#about'
   get '/search', to: 'searches#search'
@@ -19,8 +19,8 @@ Rails.application.routes.draw do
     get 'relationship/followings' => 'relationships#followings', as: 'followings'
     get 'relationship/followers' => 'relationships#followers', as: 'followers'
   end
-  
+
   resources :rooms, only: [:create]
-  resources :chats, only: [:show, :create]
+  resources :chats, only: [:create, :show]
 
 end
