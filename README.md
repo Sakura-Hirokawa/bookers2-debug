@@ -6,6 +6,8 @@
 ## 5/4 DMM WEBCAMPの学習コンテンツ課題5【Bookers2へ「検索機能」を実装】です。
 ## 5/5 DMM WEBCAMPの学習コンテンツ課題6【課題3で実装した機能の非同期通信化】です。
 ## 5/7 DMM WEBCAMPの学習コンテンツ課題7【Bookers2に住所検索機能を追加しましょう】です。
+## 5/7 DMM WEBCAMPの学習コンテンツ課題8【Bookers2にメール送信機能を追加しましょう】です。
+## 5/10 DMM WEBCAMPの学習コンテンツ課題9【ユーザー間で1:1のチャットを実装しましょう】です。
 
 This README would normally document whatever steps are necessary to get the
 application up and running.
