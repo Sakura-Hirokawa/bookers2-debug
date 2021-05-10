@@ -70,3 +70,5 @@ gem 'jquery-rails'
 gem 'font-awesome-sass', '~> 5.13'
 
 gem 'jp_prefecture'	
+
+gem 'whenever', require: false
