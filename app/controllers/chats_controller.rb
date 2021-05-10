@@ -1,33 +1,30 @@
 class ChatsController < ApplicationController
-  before_action :authenticate_user!
-
-  def create
-    room = Room.find(params[:room_id])
-    if UserRoom.where(user_id: current_user.id, room_id: params[:message][:room_id]).present?
-      current_user.chats.create(chat_params)
-      @chats = room.chats
-      # @message = Chat.create(params.require(:chat).permit(:user_id, :message, :room_id).merge(user_id: current_user.id))
-    else
-      redirect_back(fallback_location: root_path)
-      # redirect_to "/chats/#{@chat.room_id}"
-    end
-  end
 
   def show
-    @room = Room.find(params[:id])
-    if UserRoom.where(user_id: current_user.id, room_id: @room.id).present?
-      @messages = @room.chats
-      @message = Chat.new
-      @entries = @room.user_rooms
+    @user = User.find(params[:id])
+    rooms = current_user.user_rooms.pluck(:room_id)
+    user_rooms = UserRoom.find_by(user_id: @user.id, room_id: rooms)
+    
+    if user_rooms.nil?
+      @room = Room.new
+      @room.save
+      UserRoom.create(user_id: current_user.id, room_id: @room.id)
+      UserRoom.create(user_id: @user.id, room_id: @room.id)
     else
-      redirect_back(fallback_location: root_path)
+      @room = user_rooms.room
     end
+    @chats = @room.chats
+    @chat = Chat.new(room_id: @room.id)
+  end
+
+  def create
+    @chat = current_user.chats.new(chat_params)
+    @chat.save
   end
   
   private
   
   def chat_params
-    params.require(:chat).permit(:message).merge(room_id: params[:room_id])
+    params.require(:chat).permit(:message, :room_id)
   end
-  
 end
